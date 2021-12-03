@@ -10,6 +10,7 @@ BOUNDARY = 'data/cb_2020_us_nation_5m.shp'
 
 
 def unbounded_voronoi(gdf):
+    # GDF must have a geometry that is points
     coords = list(zip(gdf.geometry.x, gdf.geometry.y))
 
     vor = Voronoi(coords)
@@ -55,6 +56,30 @@ def bounded_voronoi(gdf):
 
 
 def get_regions(gdf):
+    boundary = gpd.read_file('data/cb_2020_us_nation_5m.shp')
+    coords = list(zip(gdf.geometry.x, gdf.geometry.y))
+    vor = Voronoi(coords)
+
+    r = vor.regions
+    r = [i for i in r if -1 not in i]
+    r = [i for i in r if len(i) >= 3]
+
+    v = vor.vertices
+
+    p = []
+    for reg in r:
+        p.append(Polygon([v[i] for i in reg]))
+
+    b = boundary.iloc[0][0]
+    p = [i.intersection(b) for i in tqdm(p)]
+
+    g = gpd.GeoSeries(p)
+    g.crs = CRS
+
+    return g
+
+
+def get_regions_df(gdf):
     boundary = gpd.read_file('data/cb_2020_us_nation_5m.shp')
     coords = list(zip(gdf.geometry.x, gdf.geometry.y))
     vor = Voronoi(coords)

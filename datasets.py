@@ -19,7 +19,7 @@ def convert(tude):
     return multiplier * sum(
         float(x) / 60**n for n, x in enumerate(tude[:-1].split('-')))
 
-
+# get all from airport database
 def get_adip():
     # source: FAA ADIP - https://adip.faa.gov/publishedAirports/all-airport-data.xlsx
 
