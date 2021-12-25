@@ -1,5 +1,5 @@
 STATES = [
-    # 'ALASKA',
+    'ALASKA',
     'ALABAMA',
     'ARKANSAS',
     'ARIZONA',
@@ -10,7 +10,7 @@ STATES = [
     'DELAWARE',
     'FLORIDA',
     'GEORGIA',
-    # 'HAWAII',
+    'HAWAII',
     'IOWA',
     'IDAHO',
     'ILLINOIS',

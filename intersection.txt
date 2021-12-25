@@ -1,0 +1,6 @@
+1) spatial join all intersecting voronoi regions and census tracts
+2) join back census track polygons
+3) compute intersection of voronoi and census to create a new "overlap" polygons
+4) convert overlap and census polygons to equal-area CRS
+5) divide areas to find ratio of overlap
+6) multiply by census population and sum for each airport
